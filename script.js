@@ -1,4 +1,7 @@
 function calculate() {
+
+    
+
     const total    = parseInt(document.getElementById("total").value || 0);
     const attended = parseInt(document.getElementById("attended").value || 0);
     const resultBox= document.getElementById("result");
@@ -24,9 +27,12 @@ function calculate() {
       resultText.innerHTML = msg;
     }
   
-    // reveal result box
-    resultBox.classList.remove("opacity-0","max-h-0","scale-95");
-    resultBox.classList.add   ("opacity-100","max-h-[300px]","scale-100");
+        // reveal result box
+        resultBox.classList.remove("opacity-0","max-h-0","scale-95");
+        resultBox.classList.add   ("opacity-100","max-h-[300px]","scale-100");
+    
+        // === NEW: smooth-scroll to the result ===
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   
@@ -56,6 +62,7 @@ function clearDrops() {
         pointerEvents: 'none',
         borderRadius: '1px',
         zIndex: 9998,
+        overflow: 'hidden',
       });
       drop.classList.add('effect-drop');
       document.body.appendChild(drop);
@@ -68,7 +75,7 @@ function clearDrops() {
         delay,
         duration: fallDuration,
         ease: "power1.in",
-        y: H + length,
+        y: H + length ,
         x: `+=${drift}`,
         opacity: 0,
         onComplete: () => drop.remove()
@@ -99,7 +106,8 @@ function clearDrops() {
         pointerEvents: "none",
         transform: "translate(0,0) rotate(0deg)",
         transformOrigin: "center center",
-        zIndex: 9999
+        zIndex: 9999,
+        overflow: 'hidden',
       });
   
       document.body.appendChild(el);
@@ -108,13 +116,13 @@ function clearDrops() {
       const endY     = H + h;
       const rotation = (Math.random() - 0.5) * 720;     // ±720°
       const delay    = Math.random() * 1;               // 0–1s stagger
-      const duration = Math.random() * 3 + 2;           // 3–6s duration
+      const duration = Math.random() * 3 + 5;           // 3–6s duration
   
       gsap.to(el, {
         delay,
         duration,
         ease: "power2.out",
-        y: endY,
+        y: endY*2,
         x: `+=${driftX}`,
         rotation,
         onComplete: () => el.remove()
@@ -132,6 +140,6 @@ function clearDrops() {
   }
   
   // Initial title animation
-  gsap.from("#v", { x:-100, opacity:0, duration:1, ease:"expo.in" });
-  gsap.from("#d", { x:100,  opacity:0, duration:1, ease:"expo.in" });
+  gsap.from("#v", { x:-100, opacity:0, duration:0.5, ease:"expo.in" });
+  gsap.from("#d", { x:100,  opacity:0, duration:0.5, ease:"expo.in" });
   
