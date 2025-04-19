@@ -61,7 +61,7 @@ function clearDrops() {
         backgroundColor: 'rgba(173,216,230,0.6)',
         pointerEvents: 'none',
         borderRadius: '1px',
-        zIndex: 9998,
+        zIndex: 30,
         overflow: 'hidden',
       });
       drop.classList.add('effect-drop');
@@ -106,7 +106,7 @@ function clearDrops() {
         pointerEvents: "none",
         transform: "translate(0,0) rotate(0deg)",
         transformOrigin: "center center",
-        zIndex: 9999,
+        zIndex: 30,
         overflow: 'hidden',
       });
   
@@ -140,6 +140,6 @@ function clearDrops() {
   }
   
   // Initial title animation
-  gsap.from("#v", { x:-100, opacity:0, duration:0.5, ease:"expo.in" });
-  gsap.from("#d", { x:100,  opacity:0, duration:0.5, ease:"expo.in" });
+  gsap.from("#v", { x:-200, opacity:0, duration:1, ease:"bounce" });
+  gsap.from("#d", { x:200,  opacity:0, duration:1, ease:"bounce" });
   
