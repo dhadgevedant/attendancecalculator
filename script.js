@@ -15,12 +15,14 @@ function calculate() {
     } else {
       const pct = (attended/total)*100;
       let msg = ``;
+      
       if (pct >= 75) {
-        const maxB = Math.floor((attended - 0.75*total)/0.25);
+        const maxB = Math.floor(((attended / 0.75)-total));
+        
         msg += `You can bunk ${maxB} more lecture${maxB!==1?'s':''}.`;
         createConfetti();
       } else {
-        const req = Math.ceil((0.75*total - attended)/0.25);
+        const req = Math.floor((attended-(0.75*total))/-0.25);
         msg += `You need to attend ${req} more lecture${req!==1?'s':''}.`;
         createRain();
       }
